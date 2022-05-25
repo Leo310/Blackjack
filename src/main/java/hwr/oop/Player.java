@@ -2,13 +2,13 @@ package hwr.oop;
 
 public class Player {
     private String name;
-    private Set hand;
+    private List hand;
     private int stake;
     private int bankroll;
     private boolean wantsToHit;
 
     public Player(String name, int bankroll) {
-        this.hand = new HashSet<Card>();
+        this.hand = new ArrayList<Card>();
         this.name = name;
         this.bankroll = bankroll;
     }
