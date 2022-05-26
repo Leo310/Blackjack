@@ -26,8 +26,19 @@ public class Blackjack {
         }
         // Dealer also draws two cards
         dealer.drawCard(dealer.dealCard());
+        dealer.exposeFirstCard();
         // TODO dealer exposes one card
         dealer.drawCard(dealer.dealCard());
+    }
+
+    void playersHit() {
+        for (Player player:players) {
+            player.hit(dealer.dealCard());
+        }
+    }
+    void dealerDrawsCards() {
+        // TODO if hand value is less or equal to 16
+        dealer.dealCard();
     }
 
     void playersSetStake() {
@@ -35,7 +46,15 @@ public class Blackjack {
         Scanner keyboardScanner = new Scanner(System.in);
         for (Player player : players) {
             // TODO check stakes
-            int stakeInput = keyboardScanner.nextInt();
+            int bankroll = player.getBankroll();
+            System.out.print(bankroll);
+            int stakeInput = 0;
+            while (stakeInput == 0 || stakeInput > bankroll){
+                stakeInput = keyboardScanner.nextInt();
+                if (stakeInput > bankroll) {
+                    throw new RuntimeException("Your stake cannot be bigger than your bankroll!");
+                }
+            }
             player.setStake(stakeInput);
         }
     }

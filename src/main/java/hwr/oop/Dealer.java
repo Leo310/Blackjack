@@ -50,4 +50,9 @@ public class Dealer {
     public void drawCard(Card card) {
         this.hand.add(card);
     }
+
+    public List<Card> exposeFirstCard() {
+        // TODO just return the card name, value
+        return hand;
+    }
 }

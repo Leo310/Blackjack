@@ -20,6 +20,10 @@ public class Player {
         this.stake = stake;
     }
 
+    public int getBankroll() {
+        return bankroll;
+    }
+
     public void hit(Card card) {
         hand.add(card);
     }
