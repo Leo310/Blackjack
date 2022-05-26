@@ -35,4 +35,8 @@ build/
 /.mvn/wrapper/maven-wrapper.jar
 /.env/
 
-workspace/
+workspace
+.metadata
+.run
+.mvn
+jdt.*/

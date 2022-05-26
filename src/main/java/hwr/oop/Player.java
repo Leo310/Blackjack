@@ -1,8 +1,11 @@
 package hwr.oop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private String name;
-    private List hand;
+    private List<Card> hand;
     private int stake;
     private int bankroll;
     private boolean wantsToHit;

@@ -1,8 +1,12 @@
 package hwr.oop;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Dealer {
-    private List deck;
-    private List hand;
+    private List<Card> deck;
+    private List<Card> hand;
 
     public Dealer() {
         createNewDeck();
@@ -13,13 +17,13 @@ public class Dealer {
         this.deck = new ArrayList<Card>();
         // Cards from 2 to 10
         for (int i = 2; i < 11; i++)
-            this.deck.add(new Card(i, Integer.toString(i)));
+            this.deck.add(new Card(Integer.toString(i), i));
 
         for (int i = 0; i < 4; i++) {
-            this.deck.add(new Card(10, "Jack"));
-            this.deck.add(new Card(10, "Queen"));
-            this.deck.add(new Card(10, "King"));
-            this.deck.add(new Card(1, "Ace"));
+            this.deck.add(new Card("Jack", 10));
+            this.deck.add(new Card("Queen", 10));
+            this.deck.add(new Card("King", 10));
+            this.deck.add(new Card("Ace", 1));
         }
     }
 

@@ -1,15 +1,15 @@
 package hwr.oop;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Scanner;
 
 public class Blackjack {
     List<Player> players = new ArrayList<>();
     Dealer dealer;
     final int upperBetLimit;
 
-    Blackjack(int upperBetLimit) {
+    public Blackjack(int upperBetLimit) {
         this.upperBetLimit = upperBetLimit;
         this.dealer = new Dealer();
     }
@@ -32,7 +32,7 @@ public class Blackjack {
 
     void playersSetStake() {
         // Every player sets its stakes
-        Scanner keyboardScanner = new Scanner();
+        Scanner keyboardScanner = new Scanner(System.in);
         for (Player player : players) {
             // TODO check stakes
             int stakeInput = keyboardScanner.nextInt();
