@@ -13,16 +13,16 @@ class Card {
     // TODO check for valid values
 
     boolean isValidCard() {
-        if (name == "King" || name == "Queen" || name == "Jack") {
-            if (value == 10) {
+        if (this.name == "King" || this.name == "Queen" || this.name == "Jack") {
+            if (this.value == 10) {
                 return true;
             } else {
                 throw new RuntimeException("Name does not match value!");
             }
-        } else if (name == "Ace" && (value == 1 || value == 11)) {
+        } else if (this.name == "Ace" && (this.value == 1 || this.value == 11)) {
             return true;
         } else {
-            if (name == String.valueOf(value)) {
+            if (this.name == String.valueOf(this.value)) {
                 return true;
             } else {
                 throw new RuntimeException("Name does not match value!");
@@ -31,15 +31,15 @@ class Card {
     }
 
     int getValue() {
-        return value;
+        return this.value;
     }
 
     String getName() {
-        return name;
+        return this.name;
     }
 
     void setAceValue(int value) throws RuntimeException {
-        if (name == "Ace") {
+        if (this.name == "Ace") {
             if (value == 11) {
                 this.value = 11;
             } else if (value == 1) {
