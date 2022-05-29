@@ -7,6 +7,27 @@ class Card {
     Card(String name, int value) {
         this.name = name;
         this.value = value;
+        isValidCard();
+    }
+
+    // TODO check for valid values
+
+    boolean isValidCard() {
+        if (name == "King" || name == "Queen" || name == "Jack") {
+            if (value == 10) {
+                return true;
+            } else {
+                throw new RuntimeException("Name does not match value!");
+            }
+        } else if (name == "Ace" && (value == 1 || value == 11)) {
+            return true;
+        } else {
+            if (name == String.valueOf(value)) {
+                return true;
+            } else {
+                throw new RuntimeException("Name does not match value!");
+            }
+        }
     }
 
     int getValue() {
