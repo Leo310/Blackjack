@@ -7,7 +7,7 @@ class Card {
     Card(String name, int value) {
         this.name = name;
         this.value = value;
-        isValidCard();
+        // isValidCard();
     }
 
     // TODO check for valid values
@@ -38,18 +38,17 @@ class Card {
         return name;
     }
 
-    void setAceValue(int value) throws Exception {
+    void setAceValue(int value) throws RuntimeException {
         if (name == "Ace") {
             if (value == 11) {
                 this.value = 11;
             } else if (value == 1) {
                 this.value = 1;
             } else {
-                // TODO maybe new exception
-                throw new Exception("An Ace can only have the values 1 or 11!");
+                throw new RuntimeException("An Ace can only have the values 1 or 11!");
             }
         } else {
-            throw new Exception("Only an Ace can change its value!");
+            throw new RuntimeException("Only an Ace can change its value!");
         }
     }
 }
