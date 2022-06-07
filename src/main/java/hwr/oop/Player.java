@@ -28,7 +28,16 @@ public class Player {
         hand.add(card);
     }
 
+    public int getHandCount() {
+        int count = 0;
+        for (Card card : hand) {
+            count += card.getValue();
+        }
+        return count;
+    }
+
     public boolean wantsToHit() {
+        this.wantsToHit = getHandCount() <= 16;
         return this.wantsToHit;
     }
 }
