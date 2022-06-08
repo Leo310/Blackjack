@@ -30,6 +30,11 @@ class Card {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Card [name=" + name + "]";
+    }
+
     int getValue() {
         return this.value;
     }

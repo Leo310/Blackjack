@@ -40,6 +40,14 @@ public class Dealer {
     // }
     // }
 
+    public int getHandCount() {
+        int count = 0;
+        for (Card card : hand) {
+            count += card.getValue();
+        }
+        return count;
+    }
+
     public Card dealCard() {
         Random randomNumberGenerator = new Random();
         int randomIndex = randomNumberGenerator.nextInt(this.deck.size());
@@ -51,8 +59,7 @@ public class Dealer {
         this.hand.add(card);
     }
 
-    public List<Card> exposeFirstCard() {
-        // TODO just return the card name, value
-        return hand;
+    public void exposeFirstCard() {
+        System.out.printf("Exposed First Card is a %s\n", hand.get(0));
     }
 }

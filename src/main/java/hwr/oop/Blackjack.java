@@ -2,12 +2,12 @@ package hwr.oop;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Blackjack {
     List<Player> players = new ArrayList<>();
     Dealer dealer;
     final int upperBetLimit;
+    int bank;
 
     public Blackjack(int upperBetLimit) {
         this.upperBetLimit = upperBetLimit;
@@ -15,47 +15,12 @@ public class Blackjack {
     }
 
     void addPlayer(String name, int bankroll) {
-        players.add(new Player(name, bankroll));
-    }
-
-    void drawFirstHand() {
-        // Every player draws two cards
-        for (Player player : players) {
-            player.hit(dealer.dealCard());
-            player.hit(dealer.dealCard());
-        }
-        // Dealer also draws two cards
-        dealer.drawCard(dealer.dealCard());
-        dealer.exposeFirstCard();
-        // TODO dealer exposes one card
-        dealer.drawCard(dealer.dealCard());
+        players.add(new Player(name, bankroll, upperBetLimit / 100));
     }
 
     void playersHit() {
-        for (Player player:players) {
-            player.hit(dealer.dealCard());
-        }
-    }
-    void dealerDrawsCards() {
-        // TODO if hand value is less or equal to 16
-        dealer.dealCard();
-    }
-
-    void playersSetStake() {
-        // Every player sets its stakes
-        Scanner keyboardScanner = new Scanner(System.in);
         for (Player player : players) {
-            // TODO check stakes
-            int bankroll = player.getBankroll();
-            System.out.print(bankroll);
-            int stakeInput = 0;
-            while (stakeInput == 0 || stakeInput > bankroll){
-                stakeInput = keyboardScanner.nextInt();
-                if (stakeInput > bankroll) {
-                    throw new RuntimeException("Your stake cannot be bigger than your bankroll!");
-                }
-            }
-            player.setStake(stakeInput);
+            player.hit(dealer.dealCard());
         }
     }
 
@@ -65,12 +30,72 @@ public class Blackjack {
         else {
             // TODO
             // set stakes
-            // drawFirstHand
+            // Every player sets its stakes
+            for (Player player : this.players) {
+                player.setStake();
+            }
+
+            // Every player draws two cards
+            for (Player player : this.players) {
+                player.hit(dealer.dealCard());
+                player.hit(dealer.dealCard());
+            }
+            // Dealer also draws two cards and faces up first one
+            dealer.drawCard(dealer.dealCard());
+            dealer.drawCard(dealer.dealCard());
+            dealer.exposeFirstCard();
+            // TODO players place insurance and dealer checks their down card to see if they
+            // have blackjack. if they have expose it and conclude the game
+            if (dealer.getHandCount() == 21) {
+                System.out.println("The dealer has Blackjack");
+                for (Player player : this.players) {
+                    if (player.getHandCount() != 21) {
+                        this.bank += player.loses();
+                    }
+                }
+                return;
+            }
+
             // if player wants to hit, hit! until no one wants to hit anymore or game over
+            for (Player player : this.players) {
+                player.setWantsToHit();
+                while (player.wantsToHit() && player.getHandCount() <= 21) {
+                    player.hit(dealer.dealCard());
+                    player.setWantsToHit();
+                }
+            }
             // dealer draws cards until more value greater than 16
+            while (dealer.getHandCount() <= 16) {
+                dealer.drawCard(dealer.dealCard());
+            }
+
             // compare hands of dealer and every player
-            // cash out
-            // play again?
+            for (Player player : players) {
+                if (player.getHandCount() > 21) {
+                    this.bank += player.loses();
+                } else if (player.getHandCount() == 21) {
+                    int winAmount = (player.getStake() / 2) * 3;
+                    player.wins(winAmount);
+                    this.bank -= winAmount;
+                } else if (dealer.getHandCount() == player.getHandCount()) {
+                    player.wins(0);
+                } else if (dealer.getHandCount() < player.getHandCount()) {
+                    int winAmount = player.getStake();
+                    player.wins(winAmount);
+                    this.bank -= winAmount;
+                } else {
+                    // if player has more equal or more than 17 but still less than the dealer
+                    this.bank += player.loses();
+                }
+            }
+            System.out.println("Dealer has a hand count of " + dealer.getHandCount());
         }
+    }
+
+    public static void main(String[] args) {
+        Blackjack bj = new Blackjack(20000);
+        bj.addPlayer("Hans", 1000);
+        bj.addPlayer("Peter", 300);
+        bj.play();
     }
 }
