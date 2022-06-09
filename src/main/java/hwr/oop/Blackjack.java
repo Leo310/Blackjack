@@ -28,8 +28,6 @@ public class Blackjack {
         if (players.isEmpty())
             System.out.println("No players");
         else {
-            // TODO
-            // set stakes
             // Every player sets its stakes
             for (Player player : this.players) {
                 player.setStake();
@@ -79,7 +77,7 @@ public class Blackjack {
                     this.bank -= winAmount;
                 } else if (dealer.getHandCount() == player.getHandCount()) {
                     player.wins(0);
-                } else if (dealer.getHandCount() < player.getHandCount()) {
+                } else if (dealer.getHandCount() < player.getHandCount() || dealer.getHandCount() > 21) {
                     int winAmount = player.getStake();
                     player.wins(winAmount);
                     this.bank -= winAmount;
