@@ -16,8 +16,12 @@ public class Dealer {
     public void createNewDeck() {
         this.deck = new ArrayList<Card>();
         // Cards from 2 to 10
-        for (int i = 2; i < 11; i++)
-            this.deck.add(new Card(Integer.toString(i), i));
+        for (int i = 2; i < 11; i++) {
+            // 4 times
+            for (int j = 0; j < 4; j++) {
+                this.deck.add(new Card(Integer.toString(i), i));
+            }
+        }
 
         for (int i = 0; i < 4; i++) {
             this.deck.add(new Card("Jack", 10));
@@ -27,19 +31,6 @@ public class Dealer {
         }
     }
 
-    // public void shuffleDeck() {
-    // Random rand = new Random();
-    // // count of shuffles. (higher count better shuffle)
-    // for (int j = 3; j < rand.nextInt(10); j++) {
-    // // removes card at random index and adds it at the end of the deck
-    // for (int i = 0; i < this.deck.size(); i++) {
-    // int randomIndex = rand.nextInt(this.deck.size());
-    // Card randomCard = this.deck.remove(randomIndex);
-    // this.deck.add(randomCard);
-    // }
-    // }
-    // }
-
     public int getHandCount() {
         int count = 0;
         for (Card card : hand) {
@@ -48,7 +39,10 @@ public class Dealer {
         return count;
     }
 
-    public Card dealCard() {
+    public Card dealCard() throws RuntimeException {
+        if (this.deck.isEmpty()) {
+            throw new RuntimeException("The deck is empty");
+        }
         Random randomNumberGenerator = new Random();
         int randomIndex = randomNumberGenerator.nextInt(this.deck.size());
         Card randomCard = this.deck.remove(randomIndex);

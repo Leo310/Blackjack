@@ -18,12 +18,6 @@ public class Blackjack {
         players.add(new Player(name, bankroll, upperBetLimit / 100));
     }
 
-    void playersHit() {
-        for (Player player : players) {
-            player.hit(dealer.dealCard());
-        }
-    }
-
     void play() {
         if (players.isEmpty())
             System.out.println("No players");
