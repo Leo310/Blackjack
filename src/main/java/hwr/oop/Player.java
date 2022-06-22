@@ -49,6 +49,10 @@ public class Player {
         return bankroll;
     }
 
+    public int getMinimumStake() {
+        return minimumStake;
+    }
+
     public void hit(Card card) {
         hand.add(card);
         // TODO set value if card is an ace
