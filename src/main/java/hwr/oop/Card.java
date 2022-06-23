@@ -10,26 +10,6 @@ class Card {
         // isValidCard();
     }
 
-    // TODO check for valid values
-
-    boolean isValidCard() {
-        if (this.name == "King" || this.name == "Queen" || this.name == "Jack") {
-            if (this.value == 10) {
-                return true;
-            } else {
-                throw new RuntimeException("Name does not match value!");
-            }
-        } else if (this.name == "Ace" && (this.value == 1 || this.value == 11)) {
-            return true;
-        } else {
-            if (this.name == String.valueOf(this.value)) {
-                return true;
-            } else {
-                throw new RuntimeException("Name does not match value!");
-            }
-        }
-    }
-
     @Override
     public String toString() {
         return "Card [name=" + name + "]";
