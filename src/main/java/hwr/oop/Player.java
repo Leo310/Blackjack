@@ -37,12 +37,15 @@ public class Player {
     public int loses() {
         this.bankroll -= this.stake;
         System.out.println(this.toString() + " lost");
+        this.hand = new ArrayList<Card>();
         return this.stake;
     }
 
     public void wins(int amount) {
+        // TODO not only wins but draw
         this.bankroll += amount;
         System.out.println(this.toString() + " wins");
+        this.hand = new ArrayList<Card>();
     }
 
     public int getBankroll() {
@@ -54,8 +57,10 @@ public class Player {
     }
 
     public void hit(Card card) {
+        if (getHandCount() > 10 && card.getName() == "Ace") {
+            card.setAceValueToOne();
+        }
         hand.add(card);
-        // TODO set value if card is an ace
     }
 
     public int getHandCount() {

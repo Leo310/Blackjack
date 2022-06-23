@@ -3,6 +3,7 @@ package hwr.oop;
 import java.util.ArrayList;
 import java.util.List;
 
+// TODO coherent this in classes
 public class Blackjack {
     List<Player> players = new ArrayList<>();
     Dealer dealer;
@@ -15,13 +16,16 @@ public class Blackjack {
     }
 
     void addPlayer(String name, int bankroll) {
+        // TODO check if players bankroll is bigger than minimumStake
         players.add(new Player(name, bankroll, upperBetLimit / 100));
     }
 
+    // TODO refactor methods out
     void play() {
         if (players.isEmpty())
             System.out.println("No players");
         else {
+            dealer.createNewDeck();
             // Every player sets its stakes
             for (Player player : this.players) {
                 player.setStake();
@@ -81,13 +85,16 @@ public class Blackjack {
                 }
             }
             System.out.println("Dealer has a hand count of " + dealer.getHandCount());
+            dealer.resetHand();
         }
     }
 
     public static void main(String[] args) {
         Blackjack bj = new Blackjack(20000);
         bj.addPlayer("Hans", 1000);
-        bj.addPlayer("Peter", 300);
-        bj.play();
+        bj.addPlayer("Peter", 3000);
+        for (int i = 0; i < 5; i++) {
+            bj.play();
+        }
     }
 }

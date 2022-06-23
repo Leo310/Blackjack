@@ -9,7 +9,6 @@ public class Dealer {
     private List<Card> hand;
 
     public Dealer() {
-        createNewDeck();
         this.hand = new ArrayList<Card>();
     }
 
@@ -56,5 +55,9 @@ public class Dealer {
 
     public void exposeFirstCard() {
         System.out.printf("Exposed First Card is a %s\n", hand.get(0));
+    }
+
+    public void resetHand() {
+        this.hand = new ArrayList<Card>();
     }
 }

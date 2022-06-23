@@ -28,6 +28,7 @@ class PlayerTest {
     void loses() {
         Player player = new Player("Pete", 1000, 10);
         player.loses();
+        // TODO check that player hand is empty
         assertThat(player.getBankroll()).isEqualTo(1000 - player.getStake());
     }
 
