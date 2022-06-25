@@ -40,8 +40,7 @@ public class Dealer {
 
     public Card dealCard() {
         if (this.deck.isEmpty()) {
-            // TODO explain why null and not optional
-            return null;
+            throw new RuntimeException("Deck is empty");
         }
         Random randomNumberGenerator = new Random();
         int randomIndex = randomNumberGenerator.nextInt(this.deck.size());

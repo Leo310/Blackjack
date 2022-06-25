@@ -25,30 +25,26 @@ public class Player {
         this.stake = randomStake;
     }
 
-    public void setStake(int stake) {
-        // TODO add bounds checking
-        this.stake = stake;
-    }
-
     public int getStake() {
         return this.stake;
     }
 
     public int loses() {
         this.bankroll -= this.stake;
-        System.out.println(this.toString() + " loses");
+        System.out.println(this + " loses");
         this.hand = new ArrayList<Card>();
         return this.stake;
     }
 
     public void wins(int amount) {
         if (amount == 0) {
-            System.out.println(this.toString() + " has a draw");
+            System.out.println(this + " has a draw");
         } else {
-            this.bankroll += amount;
-            System.out.println(this.toString() + " wins");
-            this.hand = new ArrayList<Card>();
+            System.out.println(this + " wins");
         }
+        this.bankroll += amount;
+        this.stake = 0;
+        this.hand = new ArrayList<Card>();
     }
 
     public int getBankroll() {
@@ -78,17 +74,18 @@ public class Player {
         this.wantsToHit = getHandCount() <= 16;
     }
 
-    public void setWantsToHit(boolean hit) {
-        this.wantsToHit = hit;
-    }
-
     public boolean wantsToHit() {
         return this.wantsToHit;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     @Override
     public String toString() {
-        return "Player [name=" + name + ", handCount=" + getHandCount() + ", stake=" + stake + ", bankroll=" + bankroll
+        return "Player [name=" + this.name + ", handCount=" + getHandCount() + ", stake=" + this.stake + ", bankroll="
+                + this.bankroll
                 + "]";
     }
 }
