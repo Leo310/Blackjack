@@ -93,8 +93,9 @@ public class Blackjack {
         Blackjack bj = new Blackjack(20000);
         bj.addPlayer("Hans", 1000);
         bj.addPlayer("Peter", 3000);
-        for (int i = 0; i < 5; i++) {
-            bj.play();
-        }
+        // for (int i = 0; i < 5; i++) {
+        //     bj.play();
+        // }
+        bj.play();
     }
 }

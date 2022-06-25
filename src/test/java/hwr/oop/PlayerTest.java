@@ -1,5 +1,6 @@
 package hwr.oop;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,9 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
 
+    Player player;
+
+    @BeforeEach
+    void createPlayer() {
+        player = new Player("Pete", 1000, 10);
+    }
+
     @Test
     void setStake() {
-        Player player = new Player("Pete", 1000, 10);
         player.setStake();
         assertThat(player.getStake()).isLessThan(player.getBankroll() + 1).isGreaterThan(player.getMinimumStake() - 1);
     }
@@ -20,46 +27,54 @@ class PlayerTest {
 
     @Test
     void getStake() {
-        Player player = new Player("Pete", 1000, 10);
         assertThat(player.getStake()).isLessThan(1000);
     }
 
     @Test
     void loses() {
-        Player player = new Player("Pete", 1000, 10);
         player.loses();
-        // TODO check that player hand is empty
+        assertThat(player.getHandCount() == 0).isTrue();
         assertThat(player.getBankroll()).isEqualTo(1000 - player.getStake());
     }
 
     @Test
     void wins() {
-        Player player = new Player("Pete", 1000, 10);
         player.wins(100);
+        assertThat(player.getHandCount() == 0).isTrue();
         assertThat(player.getBankroll()).isEqualTo(1100);
     }
 
     @Test
     void getBankroll() {
+        assertThat(player.getBankroll()).isEqualTo(1000);
     }
 
     @Test
-    void hit() {
+    void playerHitsAndTheHandCountChangesAccordinglyToTheCardValue() {
+        Card card = new Card("Ace", 11);
+        assertThat(player.getHandCount()).isEqualTo(0);
+        player.hit(card);
+        assertThat(player.getHandCount()).isEqualTo(11);
     }
 
     @Test
-    void getHandCount() {
-    }
-
-    @Test
-    void setWantsToHit() {
+    void playerWantsToHitUntilHisHandCountIsAbove16() {
+        Card aceCard = new Card("Ace", 11);
+        Card kingCard = new Card("King", 10);
+        Card sixCard = new Card("6", 6);
+        player.hit(kingCard);
+        player.setWantsToHit();
+        assertThat(player.wantsToHit()).isTrue();
+        player.hit(sixCard);
+        player.setWantsToHit();
+        assertThat(player.wantsToHit()).isTrue();
+        player.hit(aceCard);
+        player.setWantsToHit();
+        assertThat(player.wantsToHit()).isFalse();
     }
 
     @Test
     void testSetWantsToHit() {
     }
 
-    @Test
-    void wantsToHit() {
-    }
 }

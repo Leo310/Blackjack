@@ -26,7 +26,7 @@ public class Dealer {
             this.deck.add(new Card("Jack", 10));
             this.deck.add(new Card("Queen", 10));
             this.deck.add(new Card("King", 10));
-            this.deck.add(new Card("Ace", 1));
+            this.deck.add(new Card("Ace", 11));
         }
     }
 
@@ -50,6 +50,9 @@ public class Dealer {
     }
 
     public void drawCard(Card card) {
+        if (getHandCount() > 10 && card.getName() == "Ace") {
+            card.setAceValueToOne();
+        }
         this.hand.add(card);
     }
 

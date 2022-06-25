@@ -1,8 +1,12 @@
 package hwr.oop;
 
+import org.assertj.core.internal.bytebuddy.build.ToStringPlugin;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DealerTest {
     Dealer dealer;
@@ -40,5 +44,21 @@ class DealerTest {
         }
         ;
     }
+
+    @Test
+    void dealerDrawsAndTheHandCountChangesAccordinglyToTheCardValue() {
+        Card card = new Card("Ace", 11);
+        assertThat(dealer.getHandCount()).isEqualTo(0);
+        dealer.drawCard(card);
+        assertThat(dealer.getHandCount()).isEqualTo(11);
+    }
+
+    /*@Test
+    void dealerExposesRightFistCardValue() {
+        Card card = new Card("Ace", 11);
+        Dealer dealer = new Dealer();
+        String expectedOutput = "Exposed First Card is a Card [name=Ace]";
+        assertEquals("Exposed First Card is a Card [name=Ace]", dealer.exposeFirstCard().toString());
+    }*/
 
 }
