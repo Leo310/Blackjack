@@ -37,12 +37,12 @@ public class Player {
     }
 
     public void wins(int amount) {
+        this.bankroll += amount;
         if (amount == 0) {
             System.out.println(this + " has a draw");
         } else {
             System.out.println(this + " wins");
         }
-        this.bankroll += amount;
         this.stake = 0;
         this.hand = new ArrayList<Card>();
     }
