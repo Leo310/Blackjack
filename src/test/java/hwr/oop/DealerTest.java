@@ -75,6 +75,16 @@ class DealerTest {
     }
 
     @Test
+    void dealerGetsTwoAcesAndTheSecondGetsTheValueOfOne() {
+        Card firstAce = new Card("Ace", 11);
+        Card secondAce = new Card("Ace", 11);
+        dealer.drawCard(firstAce);
+        assertThat(dealer.getHandCount()).isEqualTo(11);
+        dealer.drawCard(secondAce);
+        assertThat(dealer.getHandCount()).isEqualTo(12);
+    }
+
+    @Test
     void dealerGetsACardAndEmptiesHisHand() {
         dealer.createNewDeck();
         dealer.drawCard(dealer.dealCard());
