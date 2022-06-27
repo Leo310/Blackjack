@@ -55,8 +55,9 @@ public class Dealer {
         this.hand.add(card);
     }
 
-    public void exposeFirstCard() {
-        System.out.printf("Exposed First Card is a %s\n", hand.get(0));
+    public String exposeFirstCard() {
+        //System.out.printf("Exposed First Card is a %s\n", hand.get(0));
+        return "Exposed First Card is a " + hand.get(0) + "\n";
     }
 
     public void resetHand() {

@@ -19,9 +19,6 @@ class PlayerTest {
         assertThat(player.getStake()).isLessThan(player.getBankroll() + 1).isGreaterThan(player.getMinimumStake() - 1);
     }
 
-    @Test
-    void testSetStake() {
-    }
 
     @Test
     void getStake() {
@@ -48,6 +45,16 @@ class PlayerTest {
     }
 
     @Test
+    void getMinimumStake() {
+        assertThat(player.getMinimumStake()).isEqualTo(10);
+    }
+
+    @Test
+    void getPlayersName() {
+        assertThat(player.getName()).isEqualTo("Pete");
+    }
+
+    @Test
     void playerHitsAndTheHandCountChangesAccordinglyToTheCardValue() {
         Card card = new Card("Ace", 11);
         assertThat(player.getHandCount()).isEqualTo(0);
@@ -69,10 +76,6 @@ class PlayerTest {
         player.hit(aceCard);
         player.setWantsToHit();
         assertThat(player.wantsToHit()).isFalse();
-    }
-
-    @Test
-    void testSetWantsToHit() {
     }
 
 }

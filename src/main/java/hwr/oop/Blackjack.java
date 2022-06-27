@@ -67,7 +67,8 @@ public class Blackjack {
         // Dealer also draws two cards and faces up first one
         this.dealer.drawCard(this.dealer.dealCard());
         this.dealer.drawCard(this.dealer.dealCard());
-        this.dealer.exposeFirstCard();
+        System.out.print(this.dealer.exposeFirstCard());
+        // this.dealer.exposeFirstCard();
         // TODO players place insurance and dealer checks their down card to see if they
         // have blackjack. if they have expose it and conclude the game
         if (this.dealer.getHandCount() == 21) {

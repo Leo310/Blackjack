@@ -48,15 +48,40 @@ class DealerTest {
         assertThat(dealer.getHandCount()).isEqualTo(11);
     }
 
-    /*
-     * @Test
-     * void dealerExposesRightFistCardValue() {
-     * Card card = new Card("Ace", 11);
-     * Dealer dealer = new Dealer();
-     * String expectedOutput = "Exposed First Card is a Card [name=Ace]";
-     * assertEquals("Exposed First Card is a Card [name=Ace]",
-     * dealer.exposeFirstCard().toString());
-     * }
-     */
+    @Test
+    void dealerDealsCardToHimselfAndHandCountChangesAccordingly() {
+        dealer.createNewDeck();
+        Card card = dealer.dealCard();
+        assertThat(dealer.getHandCount()).isEqualTo(0);
+        dealer.drawCard(card);
+        assertThat(dealer.getHandCount()).isEqualTo(card.getValue());
+    }
+
+    @Test
+    void dealerTriesToDealACardFromAnEmptyDeckButFails() {
+        try {
+            dealer.dealCard();
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    void dealerGetsACardAndExposesItAsFirstCardAnTheCardValueIsCorrect() {
+        Card card = new Card("Ace", 11);
+        dealer.drawCard(card);
+        assertThat(dealer.exposeFirstCard())
+                .isEqualTo("Exposed First Card is a Card [name=Ace]\n");
+    }
+
+    @Test
+    void dealerGetsACardAndEmptiesHisHand() {
+        dealer.createNewDeck();
+        dealer.drawCard(dealer.dealCard());
+        assertThat(dealer.getHandCount()).isNotEqualTo(0);
+        dealer.resetHand();
+        assertThat(dealer.getHandCount()).isEqualTo(0);
+    }
+
 
 }

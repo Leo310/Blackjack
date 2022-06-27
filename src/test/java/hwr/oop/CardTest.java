@@ -5,16 +5,32 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CardTest {
 
+    Card card;
+
     @Test
     void getValue() {
-        Card card = new Card("King", 10);
+        card = new Card("King", 10);
         assertThat(card.getValue()).isEqualTo(10);
     }
 
     @Test
     void getName() {
-        Card card = new Card("5", 5);
+        card = new Card("5", 5);
         assertThat(card.getName()).isNotEqualTo("6");
+    }
+
+    @Test
+    void cardValueOfAnAceGetsSetFromPreset11To1() {
+        card = new Card("Ace", 11);
+        assertThat(card.getValue()).isEqualTo(11);
+        card.setAceValueToOne();
+        assertThat(card.getValue()).isEqualTo(1);
+    }
+
+    @Test
+    void printsTheCardsName() {
+        card = new Card("Ace", 11);
+        assertThat(card.toString()).isEqualTo("Card [name=Ace]");
     }
 
     // @Test
