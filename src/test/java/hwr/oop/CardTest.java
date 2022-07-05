@@ -8,19 +8,19 @@ class CardTest {
     Card card;
 
     @Test
-    void getValue() {
+    void getRightCardValue() {
         card = new Card("King", 10);
         assertThat(card.getValue()).isEqualTo(10);
     }
 
     @Test
-    void getName() {
+    void getRightCardName() {
         card = new Card("5", 5);
         assertThat(card.getName()).isNotEqualTo("6");
     }
 
     @Test
-    void cardValueOfAnAceGetsSetFromPreset11To1() {
+    void cardValueOfAce_GetsSetFromPreset11_To1() {
         card = new Card("Ace", 11);
         assertThat(card.getValue()).isEqualTo(11);
         card.setAceValueToOne();
@@ -28,7 +28,7 @@ class CardTest {
     }
 
     @Test
-    void printsTheCardsName() {
+    void toString_printsTheCardsName() {
         card = new Card("Ace", 11);
         assertThat(card.toString()).isEqualTo("Card [name=Ace]");
     }

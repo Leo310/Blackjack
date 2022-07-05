@@ -16,7 +16,7 @@ class DealerTest {
     }
 
     @Test
-    void deckHas52Cards() {
+    void dealerCreatesDeck_deals52Cards_DeckIsEmptyInTheEnd() {
         dealer.createNewDeck();
         for (int i = 0; i < 52; i++) {
             dealer.dealCard();
@@ -26,7 +26,7 @@ class DealerTest {
     }
 
     @Test
-    void deckHasValidCards() {
+    void eachCardInDeck_HasTheRightName_AccordingToTheValue() {
         dealer.createNewDeck();
         for (int i = 0; i < 52; i++) {
             Card card = dealer.dealCard();
@@ -42,7 +42,7 @@ class DealerTest {
     }
 
     @Test
-    void dealerDrawsAndTheHandCountChangesAccordinglyToTheCardValue() {
+    void dealerDraws_TheHandCountChanges_AccordinglyToTheCardValue() {
         Card card = new Card("Ace", 11);
         assertThat(dealer.getHandCount()).isEqualTo(0);
         dealer.drawCard(card);
@@ -50,7 +50,7 @@ class DealerTest {
     }
 
     @Test
-    void dealerDealsCardToHimselfAndHandCountChangesAccordingly() {
+    void dealerDealsCardToHimself_HandCountChanges_Accordingly() {
         dealer.createNewDeck();
         Card card = dealer.dealCard();
         assertThat(dealer.getHandCount()).isEqualTo(0);
@@ -59,7 +59,7 @@ class DealerTest {
     }
 
     @Test
-    void dealerTriesToDealACardFromAnEmptyDeckButFails() {
+    void dealerTriesToDealACard_FromAnEmptyDeck_Fails() {
         try {
             dealer.dealCard();
         } catch (RuntimeException e) {
@@ -68,7 +68,7 @@ class DealerTest {
     }
 
     @Test
-    void dealerGetsACardAndExposesItAsFirstCardAnTheCardValueIsCorrect() {
+    void dealerGetsCard_ExposesItAsFirstCard_TheCardValueIsCorrect() {
         Card card = new Card("Ace", 11);
         dealer.drawCard(card);
         assertThat(dealer.exposeFirstCard())
@@ -76,7 +76,7 @@ class DealerTest {
     }
 
     @Test
-    void dealerGetsTwoAcesAndTheSecondGetsTheValueOfOne() {
+    void dealerGetsTwoAces_TheSecondGetsTheValueOfOne() {
         Card firstAce = new Card("Ace", 11);
         Card secondAce = new Card("Ace", 11);
         dealer.drawCard(firstAce);
@@ -86,7 +86,7 @@ class DealerTest {
     }
 
     @Test
-    void dealerGetsACardAndEmptiesHisHand() {
+    void dealerGetsACard_EmptiesHisHand() {
         dealer.createNewDeck();
         dealer.drawCard(dealer.dealCard());
         assertThat(dealer.getHandCount()).isNotEqualTo(0);

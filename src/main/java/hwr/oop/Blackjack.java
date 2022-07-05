@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Blackjack {
-    List<Player> players = new ArrayList<>();
-    Dealer dealer;
-    final int upperBetLimit;
-    final int minimumStake;
-    int bank;
+    private List<Player> players = new ArrayList<>();
+    private Dealer dealer;
+    private final int upperBetLimit;
+    private final int minimumStake;
+    private int bank;
 
     public Blackjack(int upperBetLimit) {
         this.upperBetLimit = upperBetLimit;
