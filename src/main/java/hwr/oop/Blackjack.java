@@ -16,16 +16,7 @@ public class Blackjack {
         this.dealer = new Dealer();
     }
 
-    boolean addPlayer(String name, int bankroll) {
-        if (bankroll < this.minimumStake) {
-            System.out.println(name + " has not enough money to play Blackjack");
-            return false;
-        }
-        this.players.add(new Player(name, bankroll, this.minimumStake));
-        return true;
-    }
-
-    void removePlayersWithLowBankrolls() {
+    private void removePlayersWithLowBankrolls() {
         this.players.removeIf(player -> {
             if ((player.getBankroll() < this.minimumStake)) {
                 System.out.println(player + " doesnt have enough money to play Blackjack anymore");
@@ -35,7 +26,7 @@ public class Blackjack {
         });
     }
 
-    void evaluateWinners() {
+    private void evaluateWinners() {
         // compare hands of dealer and every player
         for (Player player : players) {
             if (player.getHandCount() > 21) {
@@ -57,7 +48,7 @@ public class Blackjack {
         }
     }
 
-    void startGame() throws RuntimeException {
+    private void runGameLogic() throws RuntimeException {
         // Every player sets their stake and draws two cards
         for (Player player : this.players) {
             player.setStake();
@@ -95,7 +86,16 @@ public class Blackjack {
         }
     }
 
-    void play() {
+    public boolean addPlayer(String name, int bankroll) {
+        if (bankroll < this.minimumStake) {
+            System.out.println(name + " has not enough money to play Blackjack");
+            return false;
+        }
+        this.players.add(new Player(name, bankroll, this.minimumStake));
+        return true;
+    }
+
+    public void play() {
         // setup
         removePlayersWithLowBankrolls();
         if (this.players.isEmpty()) {
@@ -106,14 +106,14 @@ public class Blackjack {
 
         // game Logic
         try {
-            startGame();
+            runGameLogic();
         } catch (RuntimeException e) {
             // If deck is empty. Shouldnt be empty
             System.out.println(e);
             return;
         }
         evaluateWinners();
-        System.out.println("Dealer has a hand count of " + dealer.getHandCount() + ". Bank value: " + this.bank);
+        System.out.println("Dealer has a hand count of " + dealer.getHandCount() + ". Bank value: " + this.bank + '\n');
         this.dealer.resetHand();
     }
 

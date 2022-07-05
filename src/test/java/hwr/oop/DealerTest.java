@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.assertj.core.api.Assertions;
 
+// TODO one way to write Assertions
 import static org.assertj.core.api.Assertions.assertThat;
 
 class DealerTest {
