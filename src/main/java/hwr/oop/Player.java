@@ -21,7 +21,8 @@ public class Player {
 
     public void setStake() {
         Random rand = new Random();
-        int randomStake = rand.nextInt(bankroll - this.minimumStake) + minimumStake;
+        // need to add +1 in nextInt, because nextInt(0) throws IllegalArgumentException
+        int randomStake = rand.nextInt(bankroll - this.minimumStake + 1) + minimumStake - 1;
         this.stake = randomStake;
     }
 

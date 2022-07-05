@@ -2,10 +2,9 @@ package hwr.oop;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.assertj.core.api.Assertions;
 
-// TODO one way to write Assertions
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class DealerTest {
     Dealer dealer;
@@ -21,7 +20,7 @@ class DealerTest {
         for (int i = 0; i < 52; i++) {
             dealer.dealCard();
         }
-        Assertions.assertThatThrownBy(() -> dealer.dealCard(), "Deck is empty");
+        assertThatThrownBy(() -> dealer.dealCard(), "Deck is empty");
 
     }
 
@@ -31,11 +30,11 @@ class DealerTest {
         for (int i = 0; i < 52; i++) {
             Card card = dealer.dealCard();
             if (card.getName() == "King" || card.getName() == "Queen" || card.getName() == "Jack") {
-                Assertions.assertThat(card.getValue()).isEqualTo(10);
+                assertThat(card.getValue()).isEqualTo(10);
             } else if (card.getValue() == 1 || card.getValue() == 11) {
-                Assertions.assertThat(card.getName()).isEqualTo("Ace");
+                assertThat(card.getName()).isEqualTo("Ace");
             } else {
-                Assertions.assertThat(card.getValue()).isLessThan(11).isGreaterThan(1)
+                assertThat(card.getValue()).isLessThan(11).isGreaterThan(1)
                         .isEqualTo(Integer.valueOf(card.getName()));
             }
         }
@@ -93,6 +92,5 @@ class DealerTest {
         dealer.resetHand();
         assertThat(dealer.getHandCount()).isEqualTo(0);
     }
-
 
 }

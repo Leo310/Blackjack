@@ -6,13 +6,11 @@ import java.util.List;
 public class Blackjack {
     private List<Player> players = new ArrayList<>();
     private Dealer dealer;
-    private final int upperBetLimit;
     private final int minimumStake;
     private int bank;
 
-    public Blackjack(int upperBetLimit) {
-        this.upperBetLimit = upperBetLimit;
-        this.minimumStake = upperBetLimit / 100;
+    public Blackjack(int minimumStake) {
+        this.minimumStake = minimumStake;
         this.dealer = new Dealer();
     }
 
@@ -59,9 +57,7 @@ public class Blackjack {
         this.dealer.drawCard(this.dealer.dealCard());
         this.dealer.drawCard(this.dealer.dealCard());
         System.out.print(this.dealer.exposeFirstCard());
-        // this.dealer.exposeFirstCard();
-        // TODO players place insurance and dealer checks their down card to see if they
-        // have blackjack. if they have expose it and conclude the game
+
         if (this.dealer.getHandCount() == 21) {
             System.out.println("The dealer has Blackjack");
             for (Player player : this.players) {
@@ -91,16 +87,17 @@ public class Blackjack {
             System.out.println(name + " has not enough money to play Blackjack");
             return false;
         }
+        System.out.println("Added player: " + name);
         this.players.add(new Player(name, bankroll, this.minimumStake));
         return true;
     }
 
-    public void play() {
+    public boolean play() {
         // setup
         removePlayersWithLowBankrolls();
         if (this.players.isEmpty()) {
             System.out.println("No players");
-            return;
+            return false;
         }
         this.dealer.createNewDeck();
 
@@ -108,23 +105,13 @@ public class Blackjack {
         try {
             runGameLogic();
         } catch (RuntimeException e) {
-            // If deck is empty. Shouldnt be empty
+            // If deck is empty. Should never be empty
             System.out.println(e);
-            return;
+            return false;
         }
         evaluateWinners();
         System.out.println("Dealer has a hand count of " + dealer.getHandCount() + ". Bank value: " + this.bank + '\n');
         this.dealer.resetHand();
-    }
-
-    public static void main(String[] args) {
-        Blackjack bj = new Blackjack(20000);
-        bj.addPlayer("Hans", 1000);
-        bj.addPlayer("Peter", 3000);
-        bj.addPlayer("Luis", 3000);
-        for (int i = 0; i < 10; i++) {
-            bj.play();
-        }
-        // bj.play();
+        return true;
     }
 }
