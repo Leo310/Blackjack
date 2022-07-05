@@ -1,4 +1,4 @@
-# HWR OOP Lecture Project Template
+# Basic Blackjack Simulation
 
 [TODO]: # (Change README.md Headline to better fit to your project!)
 
@@ -7,6 +7,16 @@ This repository contains a student project created for an ongoing lecture on obj
 > :warning: This code is for educational purpose only. Do not rely on it!
 
 ## Abstract
+
+This project deals with a blackjack simulation. A blackjack instance can be created and players can be added.
+These players randomly set their stakes above the minimum stake. If a player does not meet the minimum stake,
+he is eliminated from the game. After the players have placed their stakes, the dealer draws his first card
+and reveals it. Then all players draw two cards. From then on, the player automatically decides whether or not
+to continue drawing, according to the logic of whether or not his hand count is less than or equal to 16. As
+soon as all players no longer want to draw, the dealer draws according to the same logic. When the dealer has
+finished, the handcounts of the players are compared with those of the dealer. Players who win get their stake
+added to their bankroll. Players who have lost get their stake deducted from their bankroll. In this simulation,
+an ace can also have the value 1 or 11, depending on what suits the handcount of the player or dealer better.
 
 [TODO]: # (Write a short description of your project.)
 [TODO]: # (State most important features.)
@@ -29,42 +39,7 @@ This repository contains a student project created for an ongoing lecture on obj
 |--------|-----------------|------------------------|----------------------|
 | 1      | /               | /                      | /                    |
 
-## Instructions
 
-[TODO]: # (Remove these instructions once you finished your fork's setup.)
 
-Use a fork of this repository to do implement your project.
 
-Remember to add this repository as a second remote repository (upstream) and pull from the correct remotes.
-This is necessary, because we might apply changes to this template during the next month.
 
-The following section describes how to add multiple remote repositories to your local repository, which is cloned from the fork.
-
-### Multiple remote repositories
-
-Your local repository should have a reference to both the fork (your own remote repository) and the original remote repository.
-To configure your git remote repositories, use the `git remote` command set.
-
-1. Clone your fork and go enter the repository.
-```
-git clone <fork-url>
-cd <created-folder>
-```
-2. Now your fork is configured as primary remote repository (origin).
-Next to origin, you should add the original repository as a second remote repository (upstream).
-```
-git remote add upstream <repository-url>
-```
-3. Verify that both remotes are configured correctly.
-The following command should list both remotes: origin and upstream.
-```
-git remote -v
-```
-4. To fetch changes from all remote repositories, use:
-```
-git fetch --all
-```
-5. If there are interesting changes (in e.g. the `main` branch) to merge into your branch, use:
-```
-git pull upstream main
-```

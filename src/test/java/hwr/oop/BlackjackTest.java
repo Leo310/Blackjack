@@ -15,13 +15,13 @@ class BlackjackTest {
     }
 
     @Test
-    void addPlayer() {
+    void playersGetAdded() {
         assertThat(bj.addPlayer("Hans", 999)).isFalse();
         assertThat(bj.addPlayer("Steve", 1000)).isTrue();
     }
 
     @Test
-    void blackjack_Play() {
+    void gameOfBlackjack_playFailsWithoutPlayers_succeedsWithPlayers() {
         assertThat(bj.play()).isFalse();
         bj.addPlayer("Hans", 1000);
         bj.addPlayer("Peter", 3000);
