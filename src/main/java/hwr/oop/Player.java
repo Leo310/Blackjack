@@ -19,25 +19,25 @@ public class Player {
         this.minimumStake = minimumStake;
     }
 
-    public void setStake() {
+    void setStake() {
         Random rand = new Random();
         // need to add +1 in nextInt, because nextInt(0) throws IllegalArgumentException
         int randomStake = rand.nextInt(bankroll - this.minimumStake + 1) + minimumStake - 1;
         this.stake = randomStake;
     }
 
-    public int getStake() {
+    int getStake() {
         return this.stake;
     }
 
-    public int loses() {
+    int loses() {
         this.bankroll -= this.stake;
         System.out.println(this + " loses");
         this.hand = new ArrayList<Card>();
         return this.stake;
     }
 
-    public void wins(int amount) {
+    void wins(int amount) {
         this.bankroll += amount;
         if (amount == 0) {
             System.out.println(this + " has a draw");
@@ -48,22 +48,22 @@ public class Player {
         this.hand = new ArrayList<Card>();
     }
 
-    public int getBankroll() {
+    int getBankroll() {
         return bankroll;
     }
 
-    public int getMinimumStake() {
+    int getMinimumStake() {
         return minimumStake;
     }
 
-    public void hit(Card card) {
+    void hit(Card card) {
         if (getHandCount() > 10 && card.getName() == "Ace") {
             card.setAceValueToOne();
         }
         this.hand.add(card);
     }
 
-    public int getHandCount() {
+    int getHandCount() {
         int count = 0;
         for (Card card : hand) {
             count += card.getValue();
@@ -71,15 +71,15 @@ public class Player {
         return count;
     }
 
-    public void setWantsToHit() {
+    void setWantsToHit() {
         this.wantsToHit = getHandCount() <= 16;
     }
 
-    public boolean wantsToHit() {
+    boolean wantsToHit() {
         return this.wantsToHit;
     }
 
-    public String getName() {
+    String getName() {
         return this.name;
     }
 
