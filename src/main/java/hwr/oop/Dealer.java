@@ -12,7 +12,7 @@ public class Dealer {
         this.hand = new ArrayList<Card>();
     }
 
-    void createNewDeck() {
+    public void createNewDeck() {
         this.deck = new ArrayList<Card>();
         // Cards from 2 to 10
         for (int i = 2; i < 11; i++) {
@@ -30,7 +30,7 @@ public class Dealer {
         }
     }
 
-    int getHandCount() {
+    public int getHandCount() {
         int count = 0;
         for (Card card : hand) {
             count += card.getValue();
@@ -38,7 +38,7 @@ public class Dealer {
         return count;
     }
 
-    Card dealCard() {
+    public Card dealCard() {
         if (this.deck.isEmpty()) {
             throw new RuntimeException("Deck is empty");
         }
@@ -48,19 +48,19 @@ public class Dealer {
         return randomCard;
     }
 
-    void drawCard(Card card) {
+    public void drawCard(Card card) {
         if (getHandCount() > 10 && card.getName() == "Ace") {
             card.setAceValueToOne();
         }
         this.hand.add(card);
     }
 
-    String exposeFirstCard() {
+    public String exposeFirstCard() {
         //System.out.printf("Exposed First Card is a %s\n", hand.get(0));
         return "Exposed First Card is a " + hand.get(0) + "\n";
     }
 
-    void resetHand() {
+    public void resetHand() {
         this.hand = new ArrayList<Card>();
     }
 }
