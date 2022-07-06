@@ -4,7 +4,7 @@ class Card {
     private final String name;
     private int value;
 
-    Card(String name, int value) {
+    public Card(String name, int value) {
         this.name = name;
         this.value = value;
         // isValidCard();
@@ -15,15 +15,15 @@ class Card {
         return "Card [name=" + name + "]";
     }
 
-    int getValue() {
+    public int getValue() {
         return this.value;
     }
 
-    String getName() {
+    public String getName() {
         return this.name;
     }
 
-    void setAceValueToOne() {
+    public void setAceValueToOne() {
         if (this.name == "Ace") {
             this.value = 1;
         }

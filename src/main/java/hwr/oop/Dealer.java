@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Dealer {
+class Dealer {
     private List<Card> deck;
     private List<Card> hand;
 
@@ -40,7 +40,7 @@ public class Dealer {
 
     public Card dealCard() {
         if (this.deck.isEmpty()) {
-            throw new RuntimeException("Deck is empty");
+            throw new EmptyCardDeckException("Deck is empty");
         }
         Random randomNumberGenerator = new Random();
         int randomIndex = randomNumberGenerator.nextInt(this.deck.size());
@@ -56,7 +56,7 @@ public class Dealer {
     }
 
     public String exposeFirstCard() {
-        //System.out.printf("Exposed First Card is a %s\n", hand.get(0));
+        // System.out.printf("Exposed First Card is a %s\n", hand.get(0));
         return "Exposed First Card is a " + hand.get(0) + "\n";
     }
 

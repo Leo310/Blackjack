@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Player {
+class Player {
     private String name;
     private List<Card> hand;
     private int stake;

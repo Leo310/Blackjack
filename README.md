@@ -26,7 +26,7 @@ Returning null was our first approach, but this lead to unexpected behavior and 
 Then we thought about using the optional wrapper, 
 but this option would introduce so much overhead, 
 because we would still need to check whether a card is present or not to then call dealer.dealCard().get().
-At the end we decided to throw a RuntimeException when the card deck is empty,
+At the end we decided to throw an EmptyCardDeckException when the card deck is empty,
 because it makes the code so much cleaner and should never happen in a real game.
 
 ## Feature List
@@ -35,7 +35,9 @@ because it makes the code so much cleaner and should never happen in a real game
 
 | Number | Feature | Tests |
 |--------|---------|-------|
-| 1      | /       | /     |
+| 1      | create Blackjack Game with Dealer |  yes    |
+| 2      | add AI Player |   yes   |
+| 3      | run multiple Games |  yes    |
 
 
 ## Additional Dependencies
@@ -44,7 +46,10 @@ because it makes the code so much cleaner and should never happen in a real game
 
 | Number | Dependency Name | Dependency Description | Why is it necessary? |
 |--------|-----------------|------------------------|----------------------|
-| 1      | /               | /                      | /                    |
+| 1      | List               | Interface of a List                      | Could be exchanged with linked list, performace wise                    |
+| 2      | ArrayList               | Specific implementation of a List                      | Stores the dealers card deck, his and the players hands and the player in Blackjack |
+| 3      | Random               | Can create random Numbers                      | Used to draw a random card and to allow players to make desicions |
+
 
 
 
