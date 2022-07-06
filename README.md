@@ -21,6 +21,13 @@ an ace can also have the value 1 or 11, depending on what suits the handcount of
 [TODO]: # (Write a short description of your project.)
 [TODO]: # (State most important features.)
 [TODO]: # (State the most interesting problems you encountered during the project.)
+One of the biggest problems was to decide what to return on dealer.dealCard() when the card deck is empty.
+Returning null was our first approach, but this lead to unexpected behavior and NullPointerExceptions.
+Then we thought about using the optional wrapper, 
+but this option would introduce so much overhead, 
+because we would still need to check whether a card is present or not to then call dealer.dealCard().get().
+At the end we decided to throw a RuntimeException when the card deck is empty,
+because it makes the code so much cleaner and should never happen in a real game.
 
 ## Feature List
 
