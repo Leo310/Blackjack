@@ -104,7 +104,7 @@ public class Blackjack {
         // game Logic
         try {
             runGameLogic();
-        } catch (RuntimeException e) {
+        } catch (EmptyCardDeckException e) {
             // If deck is empty. Should never be empty
             System.out.println(e);
             return false;
